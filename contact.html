@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="icon" href="assets/img/infi.png" />
+    <link rel="stylesheet" href="/assets/css/global-font.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <nav class="nav-container">
+      <div class="navbar-left">
+        <a href="#">
+          <img class="web-logo" src="assets/img/infi.png" alt="web logo" />
+        </a>
+        <ul class="navbar-links">
+          <li>
+            <a href="index.html" class="navbar-link">Home</a>
+          </li>
+          <li>
+            <a href="#" class="navbar-link">Blog</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="navbar-right">
+        <a href="contact.html" class="contact-link">Contact Me</a>
+      </div>
+    </nav>
+    <main class="contact-section">
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <h1>Contact Me!</h1>
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            name="name"
+            class="form-input"
+            type="text"
+            placeholder="name"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            class="form-input"
+            type="email"
+            placeholder="email"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="subject">Subject</label>
+          <input
+            id="subject"
+            name="subject"
+            class="form-input"
+            placeholder="subject"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="skill">Skill</label>
+          <select id="skill" class="form-input" required>
+            <option value="select skill">Select Skill</option>
+            <option value="frontend">Frontend</option>
+            <option value="backend">Backend</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label class="message-contact" for="message">Your Message</label>
+          <textarea
+            id="message"
+            name="message"
+            class="form-input"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="form-submit-button">Submit</button>
+      </form>
+    </main>
+
+    <script src="assets/js/contact-form.js"></script>
+    <script src="assets/js/belajar-js.js"></script>
+  </body>
+</html>
