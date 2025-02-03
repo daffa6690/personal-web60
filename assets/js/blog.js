@@ -1,4 +1,3 @@
-
 let blogs = []; // length nya adalah 0
 
 function addBlog(e) {
@@ -15,7 +14,7 @@ function addBlog(e) {
   let imageURL = URL.createObjectURL(inputImage.files[0]);
 
   let blogs = {
-    author: "Karunia Leo G",
+    author: "M Daffa",
     title: inputTitle,
     content: inputContent,
     image: imageURL,
@@ -159,4 +158,36 @@ function getRelativeTime(targetDate) {
 
   let diffInMonth = Math.floor(diffInDays / 30);
   return `${diffInMonth} month${diffInMonth > 1 ? "s" : ""} ago`;
+}
+
+function getRelativeTime(targetDate) {
+  let now = new Date();
+  let diffInSeconds = Math.floor((now - targetDate) / 1000);
+  console.log(diffInSeconds);
+
+  if (diffInSeconds < 60) {
+    return `Durasi : ${diffInSeconds} second${
+      diffInSeconds > 1 ? "s" : ""
+    } ago`;
+  }
+
+  let diffInMinutes = Math.floor(diffInSeconds / 60);
+  if (diffInMinutes < 60) {
+    return `Durasi : ${diffInMinutes} minute${
+      diffInMinutes > 1 ? "s" : ""
+    } ago`;
+  }
+
+  let diffInHours = Math.floor(diffInMinutes / 60);
+  if (diffInHours < 24) {
+    return `${diffInHours} hours${diffInHours > 1 ? "s" : ""}  ago;`;
+  }
+
+  let diffInDays = Math.floor(diffInHours / 24);
+  if (diffInDays < 30) {
+    return `${diffInDays} day${diffInDays > 1 ? "s" : ""} ago`;
+  }
+
+  let diffInMonth = Math.floor(diffInDays / 30);
+  return `${diffInMonth} monts${diffInMonth > 1 ? "s" : ""} ago`;
 }
