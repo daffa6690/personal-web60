@@ -314,3 +314,17 @@ hr {
 .blog-detail img {
   width: 100%;
 }
+
+/* TESTIMONIALS */
+.testimonials-start-button {
+  display: flex;
+  justify-content: center;
+}
+
+.testimonials-start-button button {
+  padding: 8px 20px;
+  color: white;
+  background-color: rgb(0, 183, 255);
+  border: none;
+  border-radius: 5px;
+}
