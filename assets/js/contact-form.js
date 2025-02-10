@@ -8,7 +8,7 @@ function submitForm(event) {
 
   alert(`name : ${name}\n
         email : ${email}\n
-        phonenumber : ${subject}\n
+        subject : ${subject}\n
         skill : ${skill}\n
         message : ${skill}
         `);
