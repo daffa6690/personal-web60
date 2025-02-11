@@ -12,8 +12,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="icon" href="assets/img/infi.png" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/img/infi.png" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
   </head>
   
@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img src="assets/img/infi.png" alt="Bootstrap" width="30" height="24">
+          <img src="/img/infi.png" alt="Bootstrap" width="30" height="24">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -65,7 +65,7 @@
       </p>
          <div class="card-image">
           <div class="card-image-right">
-            <img class="box-img" src="assets/img/pp.jpeg" alt="photo" />
+            <img class="box-img" src="/img/pp.jpeg" alt="photo" />
             <div class="text-image">
             </div>
               <h3>M Daffa</h3>
@@ -87,7 +87,7 @@
       </div>
       <div class="card-btn-link">
         <a href="contact.html" class="button"><span>contact me</span></a>
-        <a downlCv href="assets/contoh-cv.pdf" download
+        <a downlCv href="/contoh-cv.pdf" download
           ><p>
             Download CV
             <span><i class="fa-solid fa-download"></i></span></p
@@ -112,5 +112,17 @@
     <!-- INTRODUCTION SECTION -->
     </main>
   </body>
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <!-- Include Handlebars from a CDN -->
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script>
+  // compile the template
+  var template = Handlebars.compile("Handlebars <span>{{doesWhat}}</span>");
+  // execute the compiled template and print the output to the console
+  var objectToSend = {
+    doesWhat: "paper!"
+  }
+  console.log(
+    template({ doesWhat: "rocks!" }));
+</script>
 </html>

@@ -1,18 +1,17 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us</title>
-    <link rel="icon" href="assets/img/infi.png" />
-    <link rel="stylesheet" href="/assets/css/global-font.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" href="/img/infi.png" />
+    <link rel="stylesheet" href="/css/global-font.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <nav class="nav-container">
       <div class="navbar-left">
         <a href="#">
-          <img class="web-logo" src="assets/img/infi.png" alt="web logo" />
+          <img class="web-logo" src="/img/infi.png" alt="web logo" />
         </a>
         <ul class="navbar-links">
           <li>
@@ -89,7 +88,13 @@
       </form>
     </main>
 
-    <script src="assets/js/contact-form.js"></script>
-    <script src="assets/js/learning/9.3.ajax.js"></script>
+    <script src="/js/contact-form.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"
+    ></script>
+    <script>
+      var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+      console console.log(template({ doesWhat: "rocks!" }));
+    </script>
   </body>
 </html>

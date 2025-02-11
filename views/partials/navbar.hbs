@@ -1,0 +1,47 @@
+<nav class='navbar sticky-top navbar-expand-lg' style='background-color: #1A1A1A;'>
+  <div class='container-fluid'>
+    <a class='navbar-brand' href='/'>
+      <img src='/assets/img/nm-bg.png' alt='Bootstrap' width='50' />
+    </a>
+    <button class='navbar-toggler' style="color: #FFF100;" type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+      <span class='navbar-toggler-icon' style="color: #FFF100;"></span>
+    </button>
+    <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+      <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+        <li class='nav-item'>
+          <a class='nav-link {{#if (equal currentPage 'Home')}}active text-orange fw-bold {{/if}}' aria-current='page' href='/'>Home</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link {{#if (equal currentPage 'My Project')}}active text-orange fw-bold{{/if}}' href='/myproject'>My Project</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link {{#if (equal currentPage 'Testimonial')}}active text-orange fw-bold{{/if}}' href='/testimonial'>Testimonial</a>
+        </li>
+      </ul>
+      <div style="display: flex; align-items: center; width: 50%; justify-content:end; gap: 10px; color: black; font-family: 'Poppins', sans-serif; ">
+     {{#if users}}
+     <div class="dropdown-container">
+		  <details class="dropdown right">
+        <summary>
+          <img class="img_user" src="/assets/img/user.png" alt="user_image">
+        </summary>
+        <ul class="user-ui">
+						<li class="user-li">
+              <p style="algin-items: center;">Hallo {{users.username}}👋</p>
+							<p style="font-style: italic;">{{ users.email }}</p>
+              <hr class="divder">
+							<a href='/Logout'><i class="fa-solid fa-person-walking-arrow-right"></i> Logout</a>
+						</li>
+					</ul>
+      </details>
+		</div>
+      {{!-- <a class='nav-link {{#if (equal currentPage 'Logout')}}active text-orange fw-bold{{/if}}' href='/Logout'>Logout</a>  --}}
+      {{else}}
+      <a class='nav-link {{#if (equal currentPage 'Login')}}active text-orange fw-bold{{/if}}' href='/Login'><i class="fa-solid fa-user"></i> Login</a> 
+      {{/if}}
+      {{!-- <a class='nav-link {{#if (equal currentPage 'Register')}}active text-orange fw-bold{{/if}}' href='/Register'>Register</a>  --}}
+      <a class='btn btn-orange' href='/contact'>Contact Me</a>
+      </div>
+    </div>
+  </div>
+</nav>
