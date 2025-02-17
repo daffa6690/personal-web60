@@ -29,6 +29,6 @@ hbs.registerPartials(__dirname + "/views/partials", function (err) {});
 //   res.send(`Ini Halaman Blog ${title} dengan author ${author} tahun ${year}`);
 // });
 
-// app.listen(port, () => {
-//   console.log(`Personal web app listening on port ${port}`);
-// });
+app.listen(port, () => {
+  console.log(`Personal web app listening on port ${port}`);
+});
