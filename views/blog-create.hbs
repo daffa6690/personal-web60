@@ -1,0 +1,30 @@
+{{#> layout currentPage="Create Blog"}}
+<!-- CREATE BLOG -->
+<form id="create-blog" action="/blog-create" method="post" enctype="multipart/form-data" class="create-blog-form">
+    <h1>Create New Blog</h1>
+
+    <div class="input-group mb-3">
+        <!-- <span class="input-group-text" id="title">Title</span> -->
+        <input name="title" id="title" type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="title" placeholder="title" required />
+    </div>
+
+    <div class="input-group mb-3">
+        <!-- <span class="input-group-text">Content</span> -->
+        <textarea name="content" placeholder="content" id="content" class="form-control" aria-label="content" rows="6"
+            required></textarea>
+    </div>
+
+    <div class="input-group mb-3">
+        <input name="image" type="file" class="form-control" id="image" />
+        <label class="input-group-text" for="image">Upload</label>
+    </div>
+
+    <div class="button-container">
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+<script src="assets/js/blog.js"></script>
+
+{{/layout}}

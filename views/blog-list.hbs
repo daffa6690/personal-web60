@@ -1,0 +1,44 @@
+{{#> layout currentPage="Blog"}}
+
+<!-- BLOG LIST -->
+<main>
+  <h1 style="text-align: center; margin-top: 30px;">My Blogs</h1>
+  {{#if user}}
+  <div style="width: 90%; margin: 10px auto; text-align: right;">
+    <a href="/blog-create" class="blog-post-button">Create Blog</a>
+  </div>
+  {{/if}}
+  <section id="blogList" class="blog-list">
+    {{#each blogs}}
+    <article class="blog-item">
+      <div class="blog-item-img">
+        <img src="{{this.image}}" alt="" />
+      </div>
+      <div class="blog-item-text">
+        {{!-- di dalam scope each blogs, user tidak dikenal --}}
+        {{#if (equal ../user.id this.authorId)}}
+        <div class="blog-item-buttons">
+          <a href="/blog-edit/{{this.id}}" class="btn btn-primary">Edit Blog</a>
+          <form id="deleteBlog" style="display: inline;" action="/blog/{{this.id}}?_method=DELETE" method="post">
+            <button onclick="deleteConfirm(event)" class="btn btn-danger" type="submit">Delete Blog</button>
+          </form>
+        </div>
+        {{/if}}
+        <a href="/blog/{{this.id}}" style="text-decoration: none">
+          <h1 class="blog-item-title">{{this.title}}</h1>
+        </a>
+        <p>{{formatDateToWIB this.createdAt}} | {{this.user.name}}</p>
+        <p>Last edit : {{formatDateToWIB this.updatedAt}}</p>
+        <p>
+          {{this.content}}
+        </p>
+        <p class="blog-item-relative-time">{{getRelativeTime this.createdAt}}</p>
+      </div>
+    </article>
+    {{/each}}
+  </section>
+</main>
+
+<script src="assets/js/deleteBlog.js"></script>
+
+{{/layout}}

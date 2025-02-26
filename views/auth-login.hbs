@@ -1,0 +1,35 @@
+{{#> layout currentPage="Login"}}
+<!-- Login -->
+<form id="login-form" action="/login" method="post" class="auth-form">
+    <h4 class="mb-4">Welcome back! Please login.</h4>
+
+    <div class="input-group mb-3">
+        <input name="email" id="email" type="email" class="form-control" aria-label="Sizing example input"
+            aria-describedby="email" placeholder="email" required />
+    </div>
+
+    <div class="input-group mb-3">
+        <input name="password" id="password" type="password" class="form-control" aria-label="Sizing example input"
+            aria-describedby="password" placeholder="password" required />
+    </div>
+
+    {{!-- pesan error --}}
+    {{#if messages.error}}
+    <div class="alert alert-danger" role="alert">
+        {{messages.error}}
+    </div>
+    {{/if}}
+
+    {{!-- pesan sukses --}}
+    {{#if messages.success}}
+    <div class="alert alert-success" role="alert">
+        {{messages.success}}
+    </div>
+    {{/if}}
+
+    <div class="text-center mt-4">
+        <button type="submit">Login</button>
+    </div>
+</form>
+
+{{/layout}}

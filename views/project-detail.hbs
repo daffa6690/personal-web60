@@ -1,0 +1,84 @@
+{{#>layout}}
+    <!-- PROJECT LIST -->
+    <h1 class="text-center mt-5 mb-5"><b>PROJECTS</b></h1>
+
+    {{#if user}}
+    <div class="text-center m-5">
+        <a class="btn btn-dark" href="/addproject">CREATE PROJECT</a>
+    </div>
+    {{/if}}
+
+    <div class='project-list pb-5 pt-5'>
+        <section class='project-container m-5' id='project-container'>
+            <article class='project'>
+                <img src='{{this.image}}' alt='Project Image' />
+                <h2>{{project.title}}</h2>
+                <p>{{project.content}}</p>
+
+                <ul class='skills'>
+                    {{#each project.skillSet}}
+                        <img src='/assets/img/{{this}}' alt='{{this}}' />
+                    {{/each}}
+                </ul>
+
+                <button onclick={deleteProject({{project.id}})}>delete</button>
+{{!-- 
+                {{#if (eq ../user.id this.authorId)}}
+                <ul class='button2 text-center p-0 m-0'>
+                    <li class="text-center">
+                        <a href="/editproject/{{this.id}}" class='btn btn-dark text-center'>Edit</a>
+                    </li>
+                    <li class="text-center">
+                        <form style="display:inline" action="/projects/{{this.id}}?_method=DELETE" method="post"
+                            onclick="return submitForm(this,event)">
+                            <button class='btn btn-dark text-center' type="submit">Delete</button>
+                        </form>
+                    </li>
+                </ul>
+                {{/if}} --}}
+            </article>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+function deleteProject(id) {
+    fetch('/projects/' + id, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/projects'; 
+        } else {
+            console.error('Gagal menghapus proyek');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
+        function submitForm(form, event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    }).then(() => {
+                        form.submit();
+                    });
+                }
+            });
+        }
+    </script>
+{{/layout}}
