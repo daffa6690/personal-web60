@@ -7,6 +7,7 @@ const flash = require("express-flash");
 const session = require("express-session");
 require("dotenv").config();
 const upload = require("./middlewares/upload-file");
+const Comment = require("./models/comment");
 
 // const { renderBlogEdit, updateBlog } = require("./controllers/controller-v1");
 
@@ -110,7 +111,10 @@ app.get("/blog/:id", renderBlogDetail);
 app.get("/testimonials", renderTestimonials);
 
 //MYPROJECT
-app.get("/addproject", checkUser, renderCreateProject);
+// app.get("/addproject", checkUser, renderCreateProject);
+app.get("/addproject", (req, res) => {
+  res.render("project-add", { title: "Add My Project" });
+});
 app.get("/projects", renderProjects);
 app.post("/project-add", checkUser, upload.single("image"), createProject);
 app.get("/projects/:id", getProjectById);
@@ -123,6 +127,54 @@ app.get("*", renderError);
 app.get("*", (req, res) => {
   res.render("page-404");
 });
+
+// // Middleware
+// app.use(bodyParser.json());
+// app.use(express.static("public")); // Untuk file statis
+
+// // Sinkronisasi Database
+// sequelize
+//   .sync({ alter: true })
+//   .then(() => console.log("Database connected & synced"))
+//   .catch((err) => console.error("Database sync error:", err));
+
+// // Ambil semua komentar berdasarkan projectId
+// app.get("/project/:id/comments", async (req, res) => {
+//   try {
+//     const comments = await Comment.findAll({
+//       where: { projectId: req.params.id },
+//       order: [["createdAt", "DESC"]],
+//     });
+//     res.json(comments);
+//   } catch (error) {
+//     res.status(500).json({ error: "Gagal mengambil komentar." });
+//   }
+// });
+
+// // Tambah komentar baru
+// app.post("/project/:id/comments", async (req, res) => {
+//   try {
+//     const { name, comment } = req.body;
+//     const newComment = await Comment.create({
+//       projectId: req.params.id,
+//       name,
+//       comment,
+//     });
+//     res.status(201).json(newComment);
+//   } catch (error) {
+//     res.status(500).json({ error: "Gagal menambahkan komentar." });
+//   }
+// });
+
+// sequelize
+//   .authenticate()
+//   .then(() => console.log("Database connected"))
+//   .catch((err) => console.error("Database connection error:", err));
+
+// sequelize
+//   .sync({ alter: true }) // Sinkronisasi model
+//   .then(() => console.log("Database synced"))
+//   .catch((err) => console.error("Database sync error:", err));
 
 app.listen(port, () => {
   console.log(`My personal web app listening on port ${port}`);
