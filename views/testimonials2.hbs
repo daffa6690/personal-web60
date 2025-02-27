@@ -1,0 +1,62 @@
+{{!-- {{#>layout}}
+<main>
+    <h1 class="text-center"><b>TESTIMONIALS</b></h1>
+    <h4 class="text-center">Rating By Star</h4>
+
+    <div class='star-button'>
+      <button class="btn btn-dark" onclick='showAllTestimonials()'>All</button>
+      <button class="btn btn-dark" onclick='filterTestimonialsByStar(1)'>1 ★</button>
+      <button class="btn btn-dark" onclick='filterTestimonialsByStar(2)'>2 ★</button>
+      <button class="btn btn-dark" onclick='filterTestimonialsByStar(3)'>3 ★</button>
+      <button class="btn btn-dark" onclick='filterTestimonialsByStar(4)'>4 ★</button>
+      <button class="btn btn-dark" onclick='filterTestimonialsByStar(5)'>5 ★</button>
+    </div>
+
+    <div class='testimonial-list' id='testimonial-list'>
+      <div class="spinner-border text-warning" role="status">
+      </div>
+
+      </div>
+  </main>
+
+  <script src='js/testimonial.js'></script>
+{{/layout}} --}}
+
+{{#>layout}}
+    <h2>Testimonial</h2>
+    <label for="filter">Filter berdasarkan bintang:</label>
+    <select id="filter" onchange="filterTestimonials()">
+        <option value="all">Semua</option>
+        <option value="5">5 Bintang</option>
+        <option value="4">4 Bintang</option>
+        <option value="3">3 Bintang</option>
+        <option value="2">2 Bintang</option>
+        <option value="1">1 Bintang</option>
+    </select>
+    
+    <div id="testimonials">
+        {{#each testimonials}}
+        <div class="testimonial" data-rating="{{rating}}">
+            <p>"{{message}}"</p>
+            <p class="stars">{{{stars rating}}}</p>
+        </div>
+        {{/each}}
+    </div>
+
+    <script>
+        function filterTestimonials() {
+            let filterValue = document.getElementById("filter").value;
+            let testimonials = document.querySelectorAll(".testimonial");
+            
+            testimonials.forEach(testimonial => {
+                let rating = testimonial.getAttribute("data-rating");
+                
+                if (filterValue === "all" || rating === filterValue) {
+                    testimonial.style.display = "block";
+                } else {
+                    testimonial.style.display = "none";
+                }
+            });
+        }
+    </script>
+{{/layout}}

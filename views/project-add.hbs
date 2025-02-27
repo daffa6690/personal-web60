@@ -53,59 +53,65 @@
   {{/layout}} --}}
 
   {{#>layout}}
-  <h1 class="text-center pt-2"><b>ADD MY PROJECT</b></h1>
-  <!-- FORM -->
-  <form action='/project-add' method="post" enctype="multipart/form-data" onsubmit='return validateForm()'>
-    <div class='form-field'>
-      <label for='name'>Project Name</label>
-      <input type='text' id='name' name="name" required />
-    </div>
+  <div class="container py-5">
+    <h1 class="text-center pb-3"><b>ADD MY PROJECT</b></h1>
+    
+    <!-- FORM -->
+    <form action='/project-add' method="post" enctype="multipart/form-data" onsubmit='return validateForm()' class="p-4 border rounded shadow bg-white">
+      <div class="mb-3">
+        <label for='name' class="form-label">Project Name</label>
+        <input type='text' id='name' name="name" class="form-control" required />
+      </div>
 
-    <div class='form-date'>
-      <div class='start'>
-        <label for='start'>Start Date</label>
-        <input type='date' id='start' name="start" required />
-      </div>
-      <div class='end'>
-        <label for='end'>End Date</label>
-        <input type='date' id='end' name="end" required />
-      </div>
-    </div>
-    <div class='form-field'>
-      <label for='description'>Description</label>
-      <textarea name='description' id='description' rows='5' required></textarea>
-    </div>
-    <div class='form-field-tech'>
-      <label for='technologies'>Technologies</label>
-      <div class='grid-container'>
-        <div class='grid'>
-          <input type='checkbox' id='nodejs' value='assets/img/nodejs.png' name='technologies' />
-          <label for='nodejs'>Node JS</label>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for='start' class="form-label">Start Date</label>
+          <input type='date' id='start' name="start" class="form-control" required />
         </div>
-        <div class='grid'>
-          <input type='checkbox' id='express' value='assets/img/express.png' name='technologies' />
-          <label for='express'>ExpressJS</label>
-        </div>
-        <div class='grid'>
-          <input type='checkbox' id='reactjs' value='assets/img/reactjs.png' name='technologies' />
-          <label for='reactjs'>React JS</label>
-        </div>
-        <div class='grid'>
-          <input type='checkbox' id='typescript' value='assets/img/typescript.png' name='technologies' />
-          <label for='typescript'>TypeScript</label>
+        <div class="col-md-6 mb-3">
+          <label for='end' class="form-label">End Date</label>
+          <input type='date' id='end' name="end" class="form-control" required />
         </div>
       </div>
-    </div>
-    <div class='form-field'>
-      <label for='image'>Upload Image</label>
-      <input type='file' id='image' name='image' accept="image/*" required onchange="previewImage()" />
-      <br />
-      <img id="imagePreview" src="" alt="Preview" style="display: none; max-width: 200px; margin-top: 10px;">
-    </div>
-    <div class='text-end mb-5'>
-      <button class='btn btn-dark' type='submit'>Submit</button>
-    </div>
-  </form>
+
+      <div class="mb-3">
+        <label for='description' class="form-label">Description</label>
+        <textarea name='description' id='description' rows='5' class="form-control" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for='technologies' class="form-label">Technologies</label>
+        <div class="row">
+          <div class="col-md-3 form-check">
+            <input type='checkbox' id='nodejs' value='assets/img/nodejs.png' name='technologies' class="form-check-input" />
+            <label for='nodejs' class="form-check-label">Node JS</label>
+          </div>
+          <div class="col-md-3 form-check">
+            <input type='checkbox' id='express' value='assets/img/express.png' name='technologies' class="form-check-input" />
+            <label for='express' class="form-check-label">ExpressJS</label>
+          </div>
+          <div class="col-md-3 form-check">
+            <input type='checkbox' id='reactjs' value='assets/img/reactjs.png' name='technologies' class="form-check-input" />
+            <label for='reactjs' class="form-check-label">React JS</label>
+          </div>
+          <div class="col-md-3 form-check">
+            <input type='checkbox' id='typescript' value='assets/img/typescript.png' name='technologies' class="form-check-input" />
+            <label for='typescript' class="form-check-label">TypeScript</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for='image' class="form-label">Upload Image</label>
+        <input type='file' id='image' name='image' class="form-control" accept="image/*" required onchange="previewImage()" />
+        <img id="imagePreview" src="" alt="Preview" class="img-thumbnail mt-3 d-none" style="max-width: 200px;">
+      </div>
+
+      <div class="text-end">
+        <button class="btn btn-dark" type='submit'>Submit</button>
+      </div>
+    </form>
+  </div>
 
   <script>
     function validateForm() {
@@ -135,13 +141,14 @@
         let reader = new FileReader();
         reader.onload = function(e) {
           preview.src = e.target.result;
-          preview.style.display = "block";
+          preview.classList.remove("d-none");
         };
         reader.readAsDataURL(file);
       } else {
         preview.src = "";
-        preview.style.display = "none";
+        preview.classList.add("d-none");
       }
     }
   </script>
 {{/layout}}
+

@@ -1,103 +1,85 @@
-let numbers = [1, 2, 3, 4, 5, 6, 7];
-
-function showNumber(number) {
-  console.log(`${number}`);
-  return (number *= 2);
-}
-
-numbers.forEach(showNumber);
-
-const candidates = [
+const dummyTestimonials = [
   {
-    name: "Rafli Kurniawan",
+    author: "Rafli Kurniawan",
     rating: 5,
-    caption: "Sangat berguna!",
-    image: "/personal-web/assets/img/image1.jpg",
+    caption: "Sangat membantu dan bermanfaat!",
+    image: "https://via.placeholder.com/150",
   },
   {
-    name: "Dio Brando",
+    author: "Dewi Anggraini",
     rating: 4,
-    caption: "This is me. DIO!",
-    image: "/personal-web/assets/img/image2.jpg",
+    caption: "Pelayanan sangat baik dan responsif.",
+    image: "https://via.placeholder.com/150",
   },
   {
-    name: "Joseph Joestar",
+    author: "Budi Santoso",
     rating: 3,
-    caption: "SIZA!",
-    image: "/personal-web/assets/img/image3.jpg",
+    caption: "Cukup memuaskan, tetapi bisa lebih baik lagi.",
+    image: "https://via.placeholder.com/150",
   },
   {
-    name: "Jonathan Joestar",
+    author: "Siti Nurhaliza",
     rating: 5,
-    caption: "ded!",
-    image: "/personal-web/assets/img/image4.jpg",
+    caption: "Luar biasa! Tidak mengecewakan.",
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    author: "Andi Pratama",
+    rating: 2,
+    caption: "Kurang memuaskan, perlu perbaikan lebih lanjut.",
+    image: "https://via.placeholder.com/150",
   },
 ];
 
-const criteria = {
-  score: 70,
-  expectedSalary: 1000,
-  prefferedPosition: "Fullstack",
-};
-
-passCandidates = candidates.filter((candidates) => {
-  if (candidates.score > criteria.score) console.log(candidates);
-});
-console.log(passCandidates);
-
-function fetchTestimonial() {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://api.npoint.io/3afc57bba2012a483de7", true);
-
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        const respone = JSON.parse(xhr.responseText);
-        resolve(respone.testimonials); //Testimonials ini array of object yang ada di link api
-      } else {
-        reject("Error", xhr.status);
-      }
-    };
-    xhr.onerror = () => reject("network error");
-    xhr.send();
+async function fetchTestimonial() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(dummyTestimonials), 500);
   });
 }
 
 const testimonialsContainer = document.getElementById("testimonial-list");
 
-const testimonialsHTML = (array) => {
+function testimonialsHTML(array) {
   return array
     .map(
       (testimonial) => `
-        <article>
-          <img src="${testimonial.image}" alt="testimonial-image" />
-          <p class="testimonial-item-caption pt-3"><i>"${testimonial.caption}"</i></p>
-          <p class="text-end">- ${testimonial.author}</p>
-          <p class="text-end" style="font-weight: bold">${testimonial.rating}★</p>
-        </article>
+          <article class="col-md-6 mb-3">
+            <div class="card p-3 border rounded">
+              <img src="${
+                testimonial.image
+              }" class="img-fluid" alt="testimonial-image" />
+              <p class="testimonial-item-caption pt-3"><i>"${
+                testimonial.caption
+              }"</i></p>
+              <p class="text-end">- ${testimonial.author}</p>
+              <p class="text-end" style="font-weight: bold">
+                ${Array(testimonial.rating).fill("⭐").join(" ")} (${
+        testimonial.rating
+      }/5)
+              </p>
+            </div>
+          </article>
         `
     )
     .join("");
-};
+}
 
 async function showAllTestimonials() {
   const testimonials = await fetchTestimonial();
-  console.log(testimonials);
   testimonialsContainer.innerHTML = testimonialsHTML(testimonials);
 }
-showAllTestimonials();
 
 async function filterTestimonialsByStar(rating) {
   const testimonials = await fetchTestimonial();
-
   const filteredTestimonials = testimonials.filter(
-    (testimonials) => testimonials.rating === rating
+    (testimonial) => testimonial.rating === rating
   );
 
-  console.log(filteredTestimonials);
-
-  if (filteredTestimonials.length == 0) {
-    return (testimonialsContainer.innerHTML = `<p>No testimonial</p>`);
+  if (filteredTestimonials.length === 0) {
+    testimonialsContainer.innerHTML = `<p class="text-center text-muted">No testimonial</p>`;
+  } else {
+    testimonialsContainer.innerHTML = testimonialsHTML(filteredTestimonials);
   }
-  testimonialsContainer.innerHTML = testimonialsHTML(filteredTestimonials);
 }
+
+document.addEventListener("DOMContentLoaded", showAllTestimonials);
