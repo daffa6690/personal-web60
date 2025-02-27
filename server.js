@@ -7,17 +7,20 @@ const session = require("express-session");
 require("dotenv").config();
 const upload = require("./middlewares/upload-file");
 const Comment = require("./models/comment");
-const exphbs = require("express-handlebars");
+// const exphbs = require("express-handlebars");
+const hbs = require("hbs");
 
-// Konfigurasi Handlebars
-const hbs = exphbs.create({
-  helpers: {
-    eq: (a, b) => a === b,
-  },
-});
+// const hbs = exphbs.create({
+//   helpers: {
+//     eq: (a, b) => a === b,
+//   },
+//   defaultLayout: "layout",
+//   layoutsDir: path.join(__dirname, "views/partials"),
+//   partialsDir: path.join(__dirname, "views/partials"),
+// });
 
-app.engine("handlebars", hbs.engine);
-app.set("view engine", "handlebars");
+// app.engine("handlebars", hbs.engine);
+app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./views"));
 
 const {
@@ -62,11 +65,16 @@ app.use(flash());
 app.use(
   session({
     name: "my-session",
-    secret: "my-secret-key",
+    secret: "lalalaala",
     resave: false,
     saveUninitialized: true,
   })
 );
+
+hbs.registerPartials(__dirname + "/views/partials", function (err) {});
+hbs.registerHelper("eq", function (a, b) {
+  return a === b;
+});
 
 // ROUTES
 app.get("/", renderHome);
@@ -74,6 +82,7 @@ app.get("/login", renderLogin);
 app.get("/register", renderRegister);
 app.get("/logout", authLogout);
 app.post("/login", authLogin);
+// app.post("/auth-login", authLogin);
 app.post("/register", authRegister);
 
 app.get("/contact", renderContact);
@@ -99,6 +108,9 @@ app.get("/projects/:id", getProjectById);
 app.delete("/projects/:id", deleteProject);
 app.get("/editproject/:id", checkUser, renderProjectEdit);
 app.patch("/project-update/:id", checkUser, updateProject);
+
+// CONTACT ME
+app.get("/contact", renderContact);
 
 // Rute wildcard untuk 404
 app.get("*", (req, res) => {

@@ -1,59 +1,77 @@
 {{#>layout}}  
-  <body class="bg-light">
-    <main>
-      <!-- PROFILE CARD -->
-      <div class="container py-5">
-        <div class="card shadow-lg border-0">
-          <div class="card-body text-center">
-            <h1 class="fw-bold">Hello, I'M Daffa</h1>
-            <div class="d-flex flex-column align-items-center">
-              <img class="rounded-circle mb-3" src="/img/pp.jpeg" alt="photo" width="150" height="150" />
-              <h3 class="fw-semibold">M Daffa</h3>
-              <h5 class="text-muted">Fullstack Developer</h5>
-            </div>
-            <p class="text-muted px-3">
-              Lorem Ipsum has been the industry's standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled it
-              to make a type specimen book. It has survived not only five centuries,
-              but also the leap into electronic typesetting, remaining essentially
-              unchanged. It was popularised in the 1960s with the release of
-              Letraset sheets containing Lorem Ipsum passages.
-            </p>
+<body class="bg-light">
+  <main>
+    <!-- PROFILE CARD -->
+    <div class="container py-5">
+      <div class="card shadow-lg border-0">
+        <div class="card-body text-center">
+          <h1 class="fw-bold">Hello, I'M Daffa</h1>
+          <div class="d-flex flex-column align-items-center">
+            <img
+              class="rounded-circle mb-3"
+              src="/img/pp.jpeg"
+              alt="photo"
+              width="150"
+              height="150"
+            />
+            <h3 class="fw-semibold">M Daffa</h3>
+            <h5 class="text-muted">Fullstack Developer</h5>
           </div>
-        </div>
-
-        <!-- BUTTONS -->
-        <div class="d-flex justify-content-center gap-3 mt-4">
-          <a href="/contact" class="btn btn-dark px-4">Contact Me</a>
-          <a href="/contoh-cv.pdf" download class="btn btn-outline-primary px-4">
-            Download CV <i class="fa-solid fa-download ms-2"></i>
-          </a>
-        </div>
-
-        <!-- SOCIAL MEDIA ICONS -->
-        <div class="text-center mt-4">
-          <a href="https://www.linkedin.com/in/mohammad-daffa-b3738216a/" class="text-primary mx-2 fs-4">
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-          <a href="https://www.facebook.com/daffadaffamdf" class="text-primary mx-2 fs-4">
-            <i class="fa-brands fa-facebook"></i>
-          </a>
-          <a href="https://www.instagram.com/fadaffa_/" class="text-danger mx-2 fs-4">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a href="https://x.com/daffa6690" class="text-dark mx-2 fs-4">
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
+          <p class="text-muted px-3">
+            Lorem Ipsum has been the industry's standard dummy text ever since
+            the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only
+            five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages.
+          </p>
         </div>
       </div>
-    </main>
 
-    <!-- Bootstrap JS -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-    <script>
-      var template = Handlebars.compile("Handlebars <span>{{doesWhat}}</span>");
-      console.log(template({ doesWhat: "rocks!" }));
-    </script>
-  </body>
+      <!-- BUTTONS -->
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="/contact" class="btn btn-dark px-4">Contact Me</a>
+        <a href="/contoh-cv.pdf" download class="btn btn-outline-primary px-4">
+          Download CV
+          <i class="fa-solid fa-download ms-2"></i>
+        </a>
+      </div>
+
+      <!-- SOCIAL MEDIA ICONS -->
+      <div class="text-center mt-4">
+        <a
+          href="https://www.linkedin.com/in/mohammad-daffa-b3738216a/"
+          class="text-primary mx-2 fs-4"
+        >
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a
+          href="https://www.facebook.com/daffadaffamdf"
+          class="text-primary mx-2 fs-4"
+        >
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a
+          href="https://www.instagram.com/fadaffa_/"
+          class="text-danger mx-2 fs-4"
+        >
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://x.com/daffa6690" class="text-dark mx-2 fs-4">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"
+  ></script>
+  <script>
+    var template = Handlebars.compile("Handlebars <span>{{doesWhat}}</span>");
+    console.log(template({ doesWhat: "rocks!" }));
+  </script>
+</body>
 {{/layout}}

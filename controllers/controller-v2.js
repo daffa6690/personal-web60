@@ -9,9 +9,9 @@ const sequelize = new Sequelize(config[process.env.NODE_ENV]);
 const saltRounds = 10;
 
 async function renderHome(req, res) {
-  const user = req.session.user;
-  console.log("usernya adalah :", user);
-  res.render("index", { user: user });
+  // const user = req.session.user;
+  // console.log("usernya adalah :", user);
+  res.render("index", {});
 }
 
 async function renderContact(req, res) {
@@ -34,7 +34,7 @@ async function renderLogin(req, res) {
 
   if (user) {
     req.flash("warning", "User already login.");
-    res.redirect("/");
+    res.redirect("/index");
   } else {
     res.render("auth-login", { user: user });
   }

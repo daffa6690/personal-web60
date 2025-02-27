@@ -1,11 +1,11 @@
-{{#>layout}}
+{{!-- {{#> layout currentPage='Contact'}}
 <div class="container py-5">
   <h2 class="text-center mb-4 fw-bold">Contact Me</h2>
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card shadow-lg border-0">
         <div class="card-body p-4">
-          <form action="/submit-contact" method="POST">
+          <form class="contact-form" onsubmit="submitForm(event)">
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
               <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
@@ -24,9 +24,9 @@
             <div class="mb-3">
               <label for="skills" class="form-label">Skills</label>
               <select id="skills" name="skills" class="form-select" required>
-                <option value="" selected disabled>Select Skill</option>
-                <option value="Frontend">Frontend</option>
-                <option value="Backend">Backend</option>
+                <option value="">Select Skill</option>
+                <option value="frontend">Frontend</option>
+                <option value="backend">Backend</option>
               </select>
             </div>
 
@@ -44,5 +44,51 @@
     </div>
   </div>
 </div>
+<script src="/assets/js/contact-form.js"></script>
+{{/layout}} --}}
+{{#> layout currentPage='Contact'}}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Contact Me!</h2>
+        <form class="contact-form" onsubmit="submitForm(event)">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input id="name" type="text" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" type="email" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input id="subject" type="text" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="skill" class="form-label">Skill</label>
+            <select id="skill" class="form-select" required>
+              <option value="">Select any skill...</option>
+              <option value="frontend">Frontend</option>
+              <option value="backend">Backend</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea id="message" class="form-control" rows="4" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="/assets/js/contact-form.js"></script>
 {{/layout}}
