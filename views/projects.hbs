@@ -1,7 +1,19 @@
 {{#>layout}}
 <div class="container py-5">
-    <!-- TITLE -->
     <h1 class="text-center mb-4 fw-bold">PROJECTS</h1>
+    <div class="mb-4 text-center">
+        <div class="mb-4 text-center">
+    <input type="text" name="search" placeholder="Cari Project" id="searchInput" />
+    <button onclick="onSearch()">Cari</button>
+  </form>
+</div>
+
+{{#each projects}}
+  <li>{{this.name}} - {{this.description}}</li>
+{{else}}
+  <li>Tidak ada project yang ditemukan.</li>
+{{/each}}
+
 
     <!-- CREATE PROJECT BUTTON (Hanya jika user login) -->
     {{#if user}}
@@ -11,19 +23,24 @@
     {{/if}}
 
     <!-- PROJECT LIST -->
-    <div class="row g-4">
+    <div class="row g-4" id="container-project">
         {{#each projects}}
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
-                <img src="{{this.image}}" class="card-img-top" alt="Project Image">
+                {{#if this.image}}
+                    <img src="../assets/uploads/{{this.image}}" class="card-img-top" alt={{this.image}}>
+
+                {{else}}
+                    <img src="/assets/img/default-project.jpg" class="card-img-top" alt={{this.image}}>
+                {{/if}}
                 <div class="card-body">
                     <h5 class="card-title">{{this.title}}</h5>
                     <p class="card-text">{{this.content}}</p>
 
                     <!-- SKILLS -->
                     <div class="d-flex gap-2">
-                        {{#each this.skillSet}}
-                        <img src="/assets/img/{{this}}" alt="{{this}}" class="img-fluid" style="width: 30px; height: 30px;">
+                        {{#each this.skill}}
+                        <img src="../{{this}}" alt="{{this}}" class="img-fluid" style="width: 30px; height: 30px;">
                         {{/each}}
                     </div>
                 </div>
@@ -31,8 +48,8 @@
                 <!-- EDIT & DELETE BUTTONS (Hanya jika user adalah pemilik proyek) -->
                 {{#if (eq ../user.id this.authorId)}}
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="/editproject/{{this.id}}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="/projects/{{this.id}}?_method=DELETE" method="post" onsubmit="return submitForm(this, event)">
+                    <a href="/project-update/{{this.id}}" class="btn btn-warning btn-sm">Edit</a>
+                    <form onsubmit="return submitForm({{this.id}}, event)">
                         <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                     </form>
                 </div>
@@ -46,7 +63,69 @@
 <!-- SWEETALERT DELETE CONFIRMATION -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    function submitForm(form, event) {
+
+function onSearch() {
+        const keyword = document.querySelector("#searchInput").value.trim();
+        const container = document.querySelector("#container-project");
+
+        if (!keyword) {
+            location.reload(); // Refresh halaman jika input kosong
+            return;
+        }
+
+        fetch("/project-search/" + keyword, {
+            method: 'GET'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Gagal mendapatkan proyek");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Data proyek ditemukan:", data);
+
+            container.innerHTML = "";
+
+            if (data.length === 0) {
+                container.innerHTML = `<div class="text-center"><p class="text-muted">Tidak ada proyek yang ditemukan.</p></div>`;
+                return;
+            }
+
+            data.forEach(project => {
+                const skillsArray = project.skill ? project.skill.split(",") : []; 
+                
+                container.innerHTML += `
+                    <div class="col-md-4">
+                        <div class="card shadow-sm h-100">
+                            <img src="${project.image ? `../assets/uploads/${project.image}` : '/assets/img/default-project.jpg'}" class="card-img-top" alt="${project.image || 'default-project'}">
+                            <div class="card-body">
+                                <h5 class="card-title">${project.title}</h5>
+                                <p class="card-text">${project.content}</p>
+
+                                <!-- SKILLS -->
+                                <div class="d-flex gap-2">
+                                    ${skillsArray.map(skill => `<img src="../assets/img/${skill.trim()}.png" alt="${skill}" class="img-fluid" style="width: 30px; height: 30px;">`).join("")}
+                                </div>
+                            </div>
+
+                            <!-- EDIT & DELETE BUTTONS (Hanya jika user adalah pemilik proyek) -->
+                            ${project.isOwner ? `
+                            <div class="card-footer d-flex justify-content-between">
+                                <a href="/project-update/${project.id}" class="btn btn-warning btn-sm">Edit</a>
+                                <form onsubmit="return submitForm(${project.id}, event)">
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            </div>` : ""}
+                        </div>
+                    </div>
+                `;
+            });
+        })
+        .catch(error => console.error("Error:", error));
+    }
+
+    function submitForm(id, event) {
         event.preventDefault();
         Swal.fire({
             title: "Are you sure?",
@@ -63,7 +142,17 @@
                     text: "Your file has been deleted.",
                     icon: "success"
                 }).then(() => {
-                    form.submit();
+                    fetch('/projects/' + id, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/projects'; 
+                    } else {
+                        console.error('Gagal menghapus proyek');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
                 });
             }
         });

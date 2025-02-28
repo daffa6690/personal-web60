@@ -27,8 +27,6 @@ function addBlog(e) {
 }
 
 function renderBlog() {
-  console.log(blogs);
-
   let blogListElement = document.getElementById("blogList");
 
   blogListElement.innerHTML = firstBlogContent();
@@ -36,7 +34,6 @@ function renderBlog() {
   for (let i = 0; i < blogs.length; i++) {
     let formattedDate = formatDateToWIB(blogs[i].postedAt);
     // menampilkan blogs yang sudah kita buat dengan mengisi form
-    console.log(blogs[i]);
 
     blogListElement.innerHTML += `
         <div id="${i}" class="blog-list-item">
@@ -126,16 +123,16 @@ function formatDateToWIB(date) {
 
 function getRelativeTime(targetDate) {
   let now = new Date();
-  console.log("WAKTU SEKARANG :");
-  console.log(now);
-  console.log("WAKTU POST :");
-  console.log(targetDate);
-  let selisih = now - targetDate;
-  console.log("SELISIH WAKTU :");
-  console.log(selisih);
-  let diffInSeconds = Math.floor((now - targetDate) / 1000); // satuan dari ms ke detik
+  // console.log("WAKTU SEKARANG :");
+  // console.log(now);
+  // console.log("WAKTU POST :");
+  // console.log(targetDate);
+  // let selisih = now - targetDate;
+  // console.log("SELISIH WAKTU :");
+  // console.log(selisih);
+  // let diffInSeconds = Math.floor((now - targetDate) / 1000); // satuan dari ms ke detik
 
-  console.log(diffInSeconds);
+  // console.log(diffInSeconds);
 
   if (diffInSeconds < 60) {
     return `${diffInSeconds} second${diffInSeconds > 1 ? "s" : ""} ago`;

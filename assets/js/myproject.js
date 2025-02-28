@@ -16,6 +16,7 @@ function addProject(event) {
   // console.log(skills);
 
   let imageFileName = URL.createObjectURL(image.files[0]);
+  // console.log(imageFileName)
   let project = {
     name: name,
     description: description,
@@ -25,7 +26,7 @@ function addProject(event) {
     end: end,
     relativeTime: new Date(),
   };
-  console.log(project.skills);
+  // console.log(project.skills);
   // mappedSkills = project.skills.map;
   projects.push(project);
 
@@ -49,10 +50,10 @@ function getRelativeTime() {
   let end = new Date(document.getElementById("end").value);
   selisih = end - start;
   diffDays = Math.floor(selisih / 1000 / 60 / 60 / 24);
-  console.log("selisih hari ", diffDays);
+  // console.log("selisih hari ", diffDays);
   diffMonths = Math.floor(diffDays / 30);
-  console.log("selisih bulan ", diffMonths);
-  console.log(selisih);
+  // console.log("selisih bulan ", diffMonths);
+  // console.log(selisih);
   if (diffDays < 30) {
     return diffDays;
     // console.log(`${diffDays} hari`);
@@ -61,12 +62,17 @@ function getRelativeTime() {
     // console.log(`${diffMonths} bulan`);
   }
 }
-
+// console.log(projects);
 function renderProject() {
+  // console.log("dari renderProject");
+  // console.log(projects);
   let projectContainerElement = document.getElementById("project-container");
   projectContainerElement.innerHTML = firstProject();
+  // console.log("test");
 
   for (let i = 0; i < projects.length; i++) {
+    // console.log(projects[i].image);
+
     projectContainerElement.innerHTML += `
         <article id="project" class="project">
           <div>

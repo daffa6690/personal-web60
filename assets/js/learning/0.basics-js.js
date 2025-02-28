@@ -90,9 +90,9 @@
 // }
 
 function greeting(name, food) {
-  console.log("selamat pagi!");
-  console.log("nama saya :", name);
-  console.log("saya suka makan :", food);
+  // console.log("selamat pagi!");
+  // console.log("nama saya :", name);
+  // console.log("saya suka makan :", food);
 }
 
 let name1 = "daffa";

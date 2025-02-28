@@ -55,7 +55,7 @@
   {{#>layout}}
   <div class="container py-5">
     <h1 class="text-center pb-3"><b>ADD MY PROJECT</b></h1>
-    
+    {{!--    --}}
     <!-- FORM -->
     <form action='/project-add' method="post" enctype="multipart/form-data" onsubmit='return validateForm()' class="p-4 border rounded shadow bg-white">
       <div class="mb-3">
@@ -119,6 +119,7 @@
       let endDate = document.getElementById("end").value;
       let checkboxes = document.querySelectorAll("input[name='technologies']:checked");
 
+      let checkboxesValues = Array.from(checkboxes).map(checkbox => checkbox.value);
       if (new Date(startDate) > new Date(endDate)) {
         alert("Start Date tidak boleh lebih besar dari End Date.");
         return false;

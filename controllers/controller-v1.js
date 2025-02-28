@@ -47,15 +47,15 @@ async function renderBlogDetail(req, res) {
   const blogYangDipilih = await sequelize.query(query, {
     type: QueryTypes.SELECT,
   });
-  console.log("hasil query", blogYangDipilih[0]);
+  // console.log("hasil query", blogYangDipilih[0]);
 
   res.render("blog-detail", { blog: blogYangDipilih[0] });
 }
 
 async function createBlog(req, res) {
   const { title, content } = req.body; // title dan content adalah properti milik req.body
-  console.log("judulnya adalah", title);
-  console.log("contentnya :", content);
+  // console.log("judulnya adalah", title);
+  // console.log("contentnya :", content);
 
   let image = "https://picsum.photos/200/150";
 
@@ -79,7 +79,7 @@ async function renderBlogEdit(req, res) {
   const blogYangDipilih = await sequelize.query(query, {
     type: QueryTypes.SELECT,
   });
-  console.log("hasil query", blogYangDipilih[0]);
+  // console.log("hasil query", blogYangDipilih[0]);
 
   res.render("blog-edit", { blog: blogYangDipilih[0] });
 }
@@ -87,8 +87,8 @@ async function renderBlogEdit(req, res) {
 async function updateBlog(req, res) {
   const id = req.params.id;
   const { title, content } = req.body; // title dan content adalah properti milik req.body
-  console.log("judul baru :", title);
-  console.log("content baru :", content);
+  // console.log("judul baru :", title);
+  // console.log("content baru :", content);
 
   const query = `UPDATE "Blogs"
                 SET title = '${title}', content = '${content}'
@@ -98,7 +98,7 @@ async function updateBlog(req, res) {
     type: QueryTypes.UPDATE,
   });
 
-  console.log("result update :", updateResult);
+  // console.log("result update :", updateResult);
 
   // let image = "https://picsum.photos/200/150";
 
@@ -124,7 +124,7 @@ async function deleteBlog(req, res) {
     type: QueryTypes.DELETE,
   });
 
-  console.log("result query delete :", deleteResult);
+  // console.log("result query delete :", deleteResult);
 
   // blogs.splice(id, 1); // array manipulation => perubahan data pada array
 

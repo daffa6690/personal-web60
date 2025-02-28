@@ -1,61 +1,77 @@
 {{#>layout}}
-<h1 class="text-center"><b>Edit Project</b></h1>
-<!-- FORM -->
-<form action="/project-update/{{project.id}}?_method=PATCH" method="post">
-  <div class='form-field'>
-    <label for='title'>Project Name</label>
-    <input name="title" type='text' id='title' value='{{project.title}}' />
-  </div>
-  <div class='form-date'>
-    <div class='start'>
-      <label for='start'>Start Date</label>
-      <input type='date' id='start' name="start" value="{{project.startDate}}" />
-    </div>
-    <div class='end'>
-      <label for='end'>End Date</label>
-      <input type='date' id='end' name="end" value="{{project.endDate}}" />
-    </div>
-  </div>
-  <div class='form-field'>
-    <label for='content'>Your Project Content</label>
-    <textarea name='content' id='content' rows='5'>{{project.content}}</textarea>
-  </div>
-  <div class='form-field-tech'>
-    <label for='technologies'>Technologies</label>
-    <div class='grid-container'>
-      <div class='grid'>
-        <input type='checkbox' id='nodejs' value='nodejs.png' name='technologies' {{#if (containsSkill
-          project.skills 'assetes/img/nodejs.png' )}}checked{{/if}} />
-        <label for='nodejs'>Node JS</label>
-      </div>
-      <div class='grid'>
-        <input type='checkbox' id='express' value='express.png' name='technologies' {{#if (containsSkill
-          project.skills 'assets/img/express.png' )}}checked{{/if}} />
-        <label for='express'>ExpressJS</label>
-      </div>
-      <div class='grid'>
-        <input type='checkbox' id='reactjs' value='reactjs.png' name='technologies' {{#if (containsSkill
-          project.skills 'assets/img/reactjs.png' )}}checked{{/if}} />
-        <label for='reactjs'>React JS</label>
-      </div>
-      <div class='grid'>
-        <input type='checkbox' id='typescript' value='typescript.png' name='technologies' {{#if (containsSkill
-          project.skills 'assets/img/typescript.png' )}}checked{{/if}} />
-        <label for='typescript'>TypeScript</label>
-      </div>
-    </div>
-  </div>
-  <div class='form-field'>
-    <label for='image'>Upload Image</label>
-    <input type='file' id='image' name='image' />
-  </div>
-  <div class='text-end mb-5'>
-    <button class='btn btn-dark' type='submit'>save</button>
-  </div>
-</form>
+<div class="container mt-5">
+  <h1 class="text-center mb-4"><b>Edit Project</b></h1>
 
-<!-- BLOG LIST -->
-{{!--
-<script src='js/blog.js'></script> --}}
+  <!-- FORM -->
+  <form action="/project-update/{{project.id}}?_method=PATCH" method="post" enctype="multipart/form-data" class="p-4 border rounded bg-light">
+    
+    <div class="mb-3">
+      <label for="title" class="form-label">Project Name</label>
+      <input name="title" type="text" id="title" value="{{project.title}}" class="form-control" />
+    </div>
 
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="start" class="form-label">Start Date</label>
+        <input type="date" id="start" name="start" value="{{formatDate project.startDate}}" class="form-control" />
+      </div>
+      <div class="col-md-6">
+        <label for="end" class="form-label">End Date
+        </label>
+        <input type="date" id="end" name="end" value="{{formatDate project.endDate}}" class="form-control" />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="content" class="form-label">Your Project Content</label>
+      <textarea name="content" id="content" rows="5" class="form-control">{{project.content}}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Technologies</label>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-check">
+            <input type="checkbox" id="nodejs" value="nodejs.png" name="technologies" class="form-check-input" {{#if (containsSkill project.skill 'nodejs.png' )}}checked{{/if}} />
+            <label for="nodejs" class="form-check-label">Node JS</label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-check">
+            <input type="checkbox" id="express" value="express.png" name="technologies" class="form-check-input" {{#if (containsSkill project.skill 'express.png' )}}checked{{/if}} />
+            <label for="express" class="form-check-label">ExpressJS</label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-check">
+            <input type="checkbox" id="reactjs" value="reactjs.png" name="technologies" class="form-check-input" {{#if (containsSkill project.skill 'reactjs.png' )}}checked{{/if}} />
+            <label for="reactjs" class="form-check-label">React JS</label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-check">
+            <input type="checkbox" id="typescript" value="typescript.png" name="technologies" class="form-check-input" {{#if (containsSkill project.skill 'typescript.png' )}}checked{{/if}} />
+            <label for="typescript" class="form-check-label">TypeScript</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Upload Image</label>
+      <input type="file" id="image" name="image" class="form-control" />
+    </div>
+
+    {{#if project.image}}
+    <div class="mb-3">
+      <p>Current Image:</p>
+      <img src="../assets/uploads/{{project.image}}" alt="Project Image" class="img-thumbnail" width="150" />
+    </div>
+    {{/if}}
+
+    <div class="text-end">
+      <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+  </form>
+</div>
 {{/layout}}

@@ -22,11 +22,11 @@
                 </ul>
 
                 <button onclick={deleteProject({{project.id}})}>delete</button>
-{{!-- 
+
                 {{#if (eq ../user.id this.authorId)}}
                 <ul class='button2 text-center p-0 m-0'>
                     <li class="text-center">
-                        <a href="/editproject/{{this.id}}" class='btn btn-dark text-center'>Edit</a>
+                        <a href="/project-edit/{{this.id}}" class='btn btn-dark text-center'>Edit</a>
                     </li>
                     <li class="text-center">
                         <form style="display:inline" action="/projects/{{this.id}}?_method=DELETE" method="post"
@@ -35,7 +35,7 @@
                         </form>
                     </li>
                 </ul>
-                {{/if}} --}}
+                {{/if}}
             </article>
         </section>
     </div>

@@ -1,24 +1,24 @@
-{{#> layout}}
-<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+{{#> layout currentPage="Testimonials"}}
+<!-- MAIN CONTENT TESTIMONIALS -->
+<main class="container my-5">
+  <h1 class="text-center">My Testimonials</h1>
+  <h3 class="text-center">Rating By Star</h3>
 
-<div class="container py-4">
-  <h1 class="text-center mb-4">Testimonial</h1>
-  <div class="d-flex justify-content-center gap-2 mb-4">
-    {{#each ratings}}
-      <button
-        onclick="filterTestimonialsByStar({{this}})"
-        class="btn btn-secondary"
-      >
-        {{this}}
-        <i class="bi bi-star-fill ms-1"></i>
-      </button>
-    {{/each}}
-    <button onclick="showAllTestimonials()" class="btn btn-danger">
-      Reset
-    </button>
+  <!-- STAR BUTTONS -->
+  <div class="d-flex justify-content-center my-3">
+    <button class="btn btn-primary mx-1" onclick="showAllTestimonials()">All</button>
+    <button class="btn btn-outline-primary mx-1" onclick="filterTestimonialsByStar(1)">1★</button>
+    <button class="btn btn-outline-primary mx-1" onclick="filterTestimonialsByStar(2)">2★</button>
+    <button class="btn btn-outline-primary mx-1" onclick="filterTestimonialsByStar(3)">3★</button>
+    <button class="btn btn-outline-primary mx-1" onclick="filterTestimonialsByStar(4)">4★</button>
+    <button class="btn btn-outline-primary mx-1" onclick="filterTestimonialsByStar(5)">5★</button>
   </div>
-  <div class="row" id="testimonial-list"></div>
-</div>
 
-<script src="/assets/js/testimonial.js"></script>
+  <!-- TESTIMONIAL LIST -->
+  <div id="testimonialsContainer" class="testimonial-list row justify-content-center">
+    <p class="text-center">Loading...</p>
+  </div>
+</main>
+
+<script src="assets/js/testimonials.js"></script>
 {{/layout}}

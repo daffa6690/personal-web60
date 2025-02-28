@@ -1,20 +1,20 @@
-class Animal {
-  speak() {
-    console.log("please define either cat or duck");
-  }
-}
+// class Animal {
+//   speak() {
+//     console.log("please define either cat or duck");
+//   }
+// }
 
-class Duck extends Animal {
-  speak() {
-    console.log("quack quack");
-  }
-}
+// class Duck extends Animal {
+//   speak() {
+//     console.log("quack quack");
+//   }
+// }
 
-class cat extends Animal {
-  speak() {
-    console.log("meow");
-  }
-}
+// class cat extends Animal {
+//   speak() {
+//     console.log("meow");
+//   }
+// }
 
 const donald = new Duck();
 donald.speak(); // quack quack
